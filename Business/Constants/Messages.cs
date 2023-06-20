@@ -26,7 +26,7 @@ namespace Business.Constants
         public static string ColorUpdated = "Renk silindi";
         public static string ColorListed = "Renkler listelendi";
 
-        public static string RentalAdded = "Kiralık eklendi";
+        public static string RentalAdded = "Kiralık araba  eklendi";
 
         public static string UserAdded = "Kullanıcı bilgileri eklendi";
         public static string UserDeleted = "Kullanıcı bilgileri silindi";
@@ -39,5 +39,11 @@ namespace Business.Constants
         public static string CustomerListed = "Müşteri bilgileri listelendi";
 
         public static string UserNotFound = "Kullanıcı bulunmadı";
+        public static string PasswordIsIncorrect = "Şifre hatalı";
+        public static string SystemLoginSuccessfull = "Sisteme giriş başarılı";
+        public static string UserAlreadyExists= "Bu kullanıcı zaten mevcut";
+        public static string UserRegisteredSuccessfully= "Kullanıcı başarıyla kaydedildi";
+        public static string AcccessTokenSuccessfullyCreated= "Access Token başarıyla oluşturuldu";
+        public static string AuthorizationDenied = "Yetkiniz yok";
     }
 }

@@ -27,26 +27,50 @@ namespace Business.Concrete
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            throw new NotImplementedException();
+            var claim=_userService.GetClaims(user);
+            var accessToken = _tokenHelper.CreateAccessToken(user, claim);
+            return new SuccessDataResult<AccessToken>(accessToken,Messages.AcccessTokenSuccessfullyCreated);
         }
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            var userToCheck=_userService.GetByMail(userForLoginDto.Email);
+            var userToCheck = _userService.GetByMail(userForLoginDto.Email);
             if (userToCheck == null)
             {
-                return 
+                return new ErrorDataResult<User>(Messages.UserNotFound);
             }
+
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            {
+                return new ErrorDataResult<User>(Messages.PasswordIsIncorrect);
+            }
+            return new SuccessDataResult<User>(userToCheck, Messages.SystemLoginSuccessfull);
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
-            throw new NotImplementedException();
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            var user = new User
+            {
+                Email = userForRegisterDto.Email,
+                FirstName = userForRegisterDto.FirstName,
+                LastName = userForRegisterDto.LastName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Status = true
+            };
+            _userService.Add(user);
+            return new SuccessDataResult<User>(user, Messages.UserRegisteredSuccessfully);
         }
 
         public IResult UserExists(string email)
         {
-            throw new NotImplementedException();
+            if (_userService.GetByMail(email) != null)
+            {
+                return new ErrorResult(Messages.UserAlreadyExists);
+            }
+            return new SuccessResult();
         }
     }
 }
