@@ -13,8 +13,8 @@ namespace Business.ValidationRules.FluentValidation
         public CarValidator()
         {
             RuleFor(c => c.Description).NotEmpty();
-            RuleFor(c => c.DailyPrice).GreaterThan(0);
             RuleFor(c => c.Description).MinimumLength(2);
+            RuleFor(c => c.Description).MaximumLength(10);
             RuleFor(c => c.DailyPrice).GreaterThanOrEqualTo(200000).When(c => c.BrandId == 1);
             RuleFor(c => c.Description).Must(StartWithA).WithMessage("Araba ismi A harfi başlamalıdır");
 

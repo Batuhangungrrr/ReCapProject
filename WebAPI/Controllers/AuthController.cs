@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
             _authService = authService;
         }
 
-        [HttpGet("login")]
+        [HttpPost("login")]
         public IActionResult Login(UserForLoginDto userForLoginDto)
         {
             var userToLogin = _authService.Login(userForLoginDto);
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("register")]
+        [HttpPost("register")]
         public IActionResult Register(UserForRegisterDto userForRegisterDto)
         {
             var userExists = _authService.UserExists(userForRegisterDto.Email);

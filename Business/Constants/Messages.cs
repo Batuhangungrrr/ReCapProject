@@ -38,7 +38,7 @@ namespace Business.Constants
         public static string CustomerUpdated = "Müşteri bilgileri güncellendi";
         public static string CustomerListed = "Müşteri bilgileri listelendi";
 
-        public static string UserNotFound = "Kullanıcı bulunmadı";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
         public static string PasswordIsIncorrect = "Şifre hatalı";
         public static string SystemLoginSuccessfull = "Sisteme giriş başarılı";
         public static string UserAlreadyExists= "Bu kullanıcı zaten mevcut";

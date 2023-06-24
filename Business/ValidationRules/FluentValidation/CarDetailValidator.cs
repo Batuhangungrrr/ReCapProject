@@ -15,10 +15,12 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(x => x.CarName).NotEmpty();
             RuleFor(x => x.BrandName).NotEmpty();
             RuleFor(x => x.ColorName).NotEmpty();
-            RuleFor(x => x.DailyPrice).GreaterThan(0);
             RuleFor(x => x.CarName).MinimumLength(2);
+            RuleFor(x => x.CarName).MaximumLength(10);
             RuleFor(x => x.BrandName).MinimumLength(2);
+            RuleFor(x => x.BrandName).MaximumLength(10);
             RuleFor(x => x.ColorName).MinimumLength(2);
+            RuleFor(x => x.ColorName).MaximumLength(10);
         }
     }
 }
